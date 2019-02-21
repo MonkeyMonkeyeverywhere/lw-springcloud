@@ -17,6 +17,7 @@ import java.util.List;
 @Configuration
 public class MyLoadBalancerAutoConfiguration {
 
+    @MyLoadBalanced
     @Autowired(required = false)
     private List<RestTemplate> restTemplates = Collections.emptyList();
 
@@ -25,14 +26,11 @@ public class MyLoadBalancerAutoConfiguration {
 
     @Bean
     public SmartInitializingSingleton myLoadBalancedResttemplateInitializer(){
-        return new SmartInitializingSingleton() {
-            @Override
-            public void afterSingletonsInstantiated() {
-                for(RestTemplate restTemplate : restTemplates){
-                    ArrayList<ClientHttpRequestInterceptor> list = Lists.newArrayList(restTemplate.getInterceptors());
-//                    list.add(interceptor);  //加上会报错 java.net.UnknownHostException: lw-house-service
-                    restTemplate.setInterceptors(list);
-                }
+        return () -> {
+            for(RestTemplate restTemplate : restTemplates){
+                ArrayList<ClientHttpRequestInterceptor> list = Lists.newArrayList(restTemplate.getInterceptors());
+//                list.add(interceptor);  //加上会报错 java.net.UnknownHostException: lw-house-service
+                restTemplate.setInterceptors(list);
             }
         };
     }
