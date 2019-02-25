@@ -1,5 +1,6 @@
 package com.lw.springcloud.controller;
 
+import com.lw.springcloud.feignclient.RemoteHouseClient;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,13 @@ public class SubstitutionController {
     @Autowired
     private LoadBalancerClient loadBalancer;
 
+    @Autowired
+    private RemoteHouseClient remoteHouseClient;
+
     @GetMapping("subHello")
     public String substitution(){
-        return "获取订阅："+restTemplate.getForObject("http://lw-house-service/house/hello",String.class );
+//        return "获取订阅："+restTemplate.getForObject("http://lw-house-service/house/hello",String.class );
+        return "获取订阅："+remoteHouseClient.hello();
     }
 
     @GetMapping("metadatas")
