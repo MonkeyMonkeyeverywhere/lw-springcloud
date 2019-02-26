@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RibbonRuleConfig {
 
-    @Bean
+//    @Bean
     public MyRule rule(){
         return new MyRule();
     }

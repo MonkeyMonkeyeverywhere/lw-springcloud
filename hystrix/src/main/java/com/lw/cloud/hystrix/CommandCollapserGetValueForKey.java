@@ -12,6 +12,9 @@ import java.util.concurrent.Future;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * NOTE:使用场景:HystrixCollapser用于对多个相同业务的请求合并到一个线程甚至可以合并到一个连接中执行，降低线程交互次和IO数,但必须保证他们属于同一依赖.
+ */
 public class CommandCollapserGetValueForKey extends HystrixCollapser<List<String>, String, Integer> {
     private final Integer key;
     public CommandCollapserGetValueForKey(Integer key) {
