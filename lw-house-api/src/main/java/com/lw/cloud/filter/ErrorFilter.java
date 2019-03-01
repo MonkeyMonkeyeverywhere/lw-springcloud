@@ -2,18 +2,22 @@ package com.lw.cloud.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 
-public class IpFilter extends ZuulFilter {
+public class ErrorFilter extends ZuulFilter {
+
+    private Logger logger = LoggerFactory.getLogger(ErrorFilter.class);
+
     @Override
     public String filterType() {
-        return "pre";
+        return "error";
     }
 
     @Override
     public int filterOrder() {
-        return 1;
+        return 100;
     }
 
     @Override
@@ -23,13 +27,10 @@ public class IpFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        System.out.println("==========进入过滤器==========");
+        System.out.println("=============Error 过滤器=============");
         RequestContext ctx = RequestContext.getCurrentContext();
-        HttpServletRequest request = ctx.getRequest();
-        int i = 2/0;
-        ctx.setSendZuulResponse(false);
-        ctx.setResponseBody("ip过滤器拦截！");
-        ctx.getResponse().setContentType("application/json;charset=utf-8");
+        Throwable throwable = ctx.getThrowable();
+        logger.error("Filter errors:{}",throwable.getCause().getMessage());
         return null;
     }
 }
