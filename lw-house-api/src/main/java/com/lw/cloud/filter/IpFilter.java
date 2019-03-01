@@ -18,7 +18,7 @@ public class IpFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        return false;
     }
 
     @Override
@@ -26,7 +26,6 @@ public class IpFilter extends ZuulFilter {
         System.out.println("==========进入过滤器==========");
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        int i = 2/0;
         ctx.setSendZuulResponse(false);
         ctx.setResponseBody("ip过滤器拦截！");
         ctx.getResponse().setContentType("application/json;charset=utf-8");
