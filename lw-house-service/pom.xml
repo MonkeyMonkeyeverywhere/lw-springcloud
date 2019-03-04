@@ -34,6 +34,13 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
+
+		<!-- Smconf -->
+		<dependency>
+			<groupId>com.cxytiandi</groupId>
+			<artifactId>cxytiandi-conf-client</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>

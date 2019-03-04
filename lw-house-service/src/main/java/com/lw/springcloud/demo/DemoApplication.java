@@ -9,6 +9,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class DemoApplication {
 
     public static void main(String[] args) {
+        // 启动时初始化配置信息
+        System.setProperty("smconf.conf.package", "com.lw.springcloud.demo.config");
         SpringApplication.run(DemoApplication.class, args);
     }
 
