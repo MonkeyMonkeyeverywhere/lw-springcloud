@@ -11,8 +11,11 @@ public class HouseController {
     @Value("${server.port}")
     private String serverPort;
 
+    @Value("${eureka.defaultZone}")
+    private String defaultZone;
+
     @RequestMapping("/hello")
     public String hello(){
-        return "hello from lw-house-service!"+serverPort;
+        return defaultZone+"hello from lw-house-service!"+serverPort;
     }
 }
