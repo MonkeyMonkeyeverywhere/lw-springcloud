@@ -25,6 +25,7 @@ public class IpFilter extends ZuulFilter {
     public Object run() {
         System.out.println("==========进入过滤器==========");
         RequestContext ctx = RequestContext.getCurrentContext();
+        ctx.set("msg","there is a message!");
         HttpServletRequest request = ctx.getRequest();
         ctx.setSendZuulResponse(false);
         ctx.setResponseBody("ip过滤器拦截！");

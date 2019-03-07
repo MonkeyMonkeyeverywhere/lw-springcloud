@@ -8,10 +8,10 @@
 		<version>1.5.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.lw.springcloud</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.lw.cloud</groupId>
+	<artifactId>lw-zipkin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>lw-zipkin</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -31,33 +31,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-server</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-sleuth</artifactId>
-		</dependency>
-
-		<!-- Smconf -->
-		<dependency>
-			<groupId>com.cxytiandi</groupId>
-			<artifactId>cxytiandi-conf-client</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<!--输出json格式的日志-->
-		<dependency>
-			<groupId>net.logstash.logback</groupId>
-			<artifactId>logstash-logback-encoder</artifactId>
-			<version>4.8</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-zipkin</artifactId>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-ui</artifactId>
 		</dependency>
 
 	</dependencies>

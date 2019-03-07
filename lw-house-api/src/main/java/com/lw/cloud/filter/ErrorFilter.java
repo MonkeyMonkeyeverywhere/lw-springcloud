@@ -29,6 +29,7 @@ public class ErrorFilter extends ZuulFilter {
     public Object run() {
         System.out.println("=============Error 过滤器=============");
         RequestContext ctx = RequestContext.getCurrentContext();
+        ctx.get("msg");
         Throwable throwable = ctx.getThrowable();
         logger.error("Filter errors:{}",throwable.getCause().getMessage());
         return null;
