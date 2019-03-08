@@ -40,6 +40,13 @@
 			<artifactId>zipkin-autoconfigure-ui</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-autoconfigure-storage-elasticsearch-http</artifactId>
+			<version>1.24.0</version>
+			<optional>true</optional>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
