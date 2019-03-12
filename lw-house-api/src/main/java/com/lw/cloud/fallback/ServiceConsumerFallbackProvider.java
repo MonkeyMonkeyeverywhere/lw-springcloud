@@ -1,9 +1,8 @@
 package com.lw.cloud.fallback;
 
-import com.lw.cloud.common.ResponseCode;
-import com.lw.cloud.common.ResponseData;
+import com.lw.cloud.base.ResponseCode;
+import com.lw.cloud.base.ResponseData;
 import com.netflix.zuul.context.RequestContext;
-import org.bouncycastle.jcajce.provider.symmetric.XTEA;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;

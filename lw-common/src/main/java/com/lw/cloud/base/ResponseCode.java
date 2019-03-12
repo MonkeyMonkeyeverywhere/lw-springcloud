@@ -1,4 +1,4 @@
-package com.lw.cloud.common;
+package com.lw.cloud.base;
 
 public enum ResponseCode {
 	/** 正确 **/
