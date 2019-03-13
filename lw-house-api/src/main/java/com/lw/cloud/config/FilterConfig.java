@@ -1,5 +1,6 @@
 package com.lw.cloud.config;
 
+import com.lw.cloud.filter.AuthHeaderFilter;
 import com.lw.cloud.filter.ErrorFilter;
 import com.lw.cloud.filter.IpFilter;
 import org.springframework.context.annotation.Bean;
@@ -16,5 +17,10 @@ public class FilterConfig {
     @Bean
     public ErrorFilter errorFilter(){
         return new ErrorFilter();
+    }
+
+    @Bean
+    public AuthHeaderFilter authHeaderFilter(){
+        return new AuthHeaderFilter();
     }
 }

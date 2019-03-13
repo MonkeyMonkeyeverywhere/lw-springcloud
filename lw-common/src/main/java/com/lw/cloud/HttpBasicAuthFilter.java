@@ -5,7 +5,6 @@ import com.lw.cloud.base.ResponseCode;
 import com.lw.cloud.base.ResponseData;
 import com.lw.cloud.util.JWTUtils;
 import com.lw.cloud.util.JsonUtils;
-import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.*;
@@ -51,8 +50,16 @@ public class HttpBasicAuthFilter implements Filter {
             //验证token
             if(StringUtils.isEmpty(auth)){
                 PrintWriter writer = httpResponse.getWriter();
-                writer.write(JsonUtils.toJson(ResponseData.fail("",ResponseCode.NO_AUTH_CODE.getCode())));
+                writer.write(JsonUtils.toJson(ResponseData.fail("非法请求【缺少token信息】",ResponseCode.NO_AUTH_CODE.getCode())));
+                return;
             }
+            JWTUtils.JWTResult jwtResult = jwtUtils.checkToken(auth);
+            if (!jwtResult.isStatus()) {
+                PrintWriter print = httpResponse.getWriter();
+                print.write(JsonUtils.toJson(ResponseData.fail(jwtResult.getMsg(), jwtResult.getCode())));
+                return;
+            }
+            chain.doFilter(servletRequest, servletResponse);
         }
     }
 

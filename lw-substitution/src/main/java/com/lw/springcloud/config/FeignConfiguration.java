@@ -20,7 +20,7 @@ public class FeignConfiguration {
 
     @Bean
     BasicAuthInterceptor BasicAuthInterceptor(){
-        return new BasicAuthInterceptor("123");
+        return new BasicAuthInterceptor();
     }
 
     /**
