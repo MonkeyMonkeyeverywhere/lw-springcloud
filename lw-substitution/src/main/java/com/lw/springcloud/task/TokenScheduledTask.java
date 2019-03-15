@@ -17,15 +17,15 @@ public class TokenScheduledTask {
 
     private static Logger logger = LoggerFactory.getLogger(TokenScheduledTask.class);
 
-    /**一分钟*/
-    private final static long REFRESH_TIME = 1000*60;
+    /**二十小时*/
+    private final static long REFRESH_TIME = 1000*60*60*20;
 
     @Autowired
     AuthRemoteClient authRemoteClient;
 
     @Scheduled(fixedDelay = REFRESH_TIME)
     public void reloadApiToken(){
-        System.out.println("==========刷新api token=========");
+        logger.info("==========刷新api token=========");
         String token = getToken();
         while (StringUtils.isEmpty(token)){
             try {
