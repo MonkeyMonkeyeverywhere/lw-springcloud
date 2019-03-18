@@ -66,6 +66,13 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!-- Smconf -->
+        <dependency>
+            <groupId>com.cxytiandi</groupId>
+            <artifactId>cxytiandi-conf-client</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
