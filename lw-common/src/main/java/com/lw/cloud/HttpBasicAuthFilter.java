@@ -40,11 +40,11 @@ public class HttpBasicAuthFilter implements Filter {
         if (uri.equals("/autoconfig") || uri.equals("/configprops") || uri.equals("/beans") || uri.equals("/dump")
                 || uri.equals("/env") || uri.equals("/health") || uri.equals("/info") || uri.equals("/mappings")
                 || uri.equals("/metrics") || uri.equals("/shutdown") || uri.equals("/trace")) {
-            if(httpRequest.getQueryString() == null){
+            /*if(httpRequest.getQueryString() == null){
                 PrintWriter print = httpResponse.getWriter();
                 print.write(JsonUtils.toJson(ResponseData.fail("非法请求【缺少token信息】", ResponseCode.NO_AUTH_CODE.getCode())));
                 return;
-            }
+            }*/
             chain.doFilter(servletRequest, servletResponse);
         } else {
             //验证token
