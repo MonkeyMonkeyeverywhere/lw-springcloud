@@ -12,6 +12,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 public class LwHouseApiApplication {
 
     public static void main(String[] args) {
+        System.setProperty("smconf.conf.package", "com.lw.cloud");
         SpringApplication.run(LwHouseApiApplication.class, args);
     }
 
