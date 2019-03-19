@@ -38,7 +38,7 @@ public class AuthFilter extends ZuulFilter {
     @Override
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
-        String apiWhiteStr = basicConf.getApiWhiteStr();
+        String apiWhiteStr = System.getProperty("apiWhiteStr");
         if(StringUtils.isNotBlank(apiWhiteStr)){
             List<String> apiWhiteList = Arrays.asList(apiWhiteStr.split(","));
             String uri = ctx.getRequest().getRequestURI();

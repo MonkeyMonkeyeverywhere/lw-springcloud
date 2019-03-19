@@ -1,9 +1,6 @@
 package com.lw.cloud.config;
 
-import com.lw.cloud.filter.AuthFilter;
-import com.lw.cloud.filter.AuthHeaderFilter;
-import com.lw.cloud.filter.ErrorFilter;
-import com.lw.cloud.filter.IpFilter;
+import com.lw.cloud.filter.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,5 +25,10 @@ public class FilterConfig {
     @Bean
     public AuthFilter authFilter(){
         return new AuthFilter();
+    }
+
+    @Bean
+    public LimiterFilter limiterFilter(){
+        return new LimiterFilter();
     }
 }
