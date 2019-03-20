@@ -41,7 +41,7 @@ public class HTTPBasicAuthorizeFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest)request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-		req.setAttribute("projectName", System.getProperty(Constant.SMCONF_PROJECT_NAME) == null ? "猿天地" : System.getProperty(Constant.SMCONF_PROJECT_NAME));
+		req.setAttribute("projectName", System.getProperty(Constant.SMCONF_PROJECT_NAME) == null ? "LW" : System.getProperty(Constant.SMCONF_PROJECT_NAME));
 		String path = req.getContextPath();
 		String uri = req.getRequestURI().toLowerCase();
 		if (!containsWhite(uri)) {

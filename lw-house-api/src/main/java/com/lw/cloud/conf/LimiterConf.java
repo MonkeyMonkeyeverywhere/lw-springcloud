@@ -11,7 +11,10 @@ import org.cxytiandi.conf.client.core.rest.Conf;
 public class LimiterConf implements SmconfUpdateCallBack {
 
     @ConfField("api限流次数")
-    private Double limitPerSecond = 100D;
+    private Double limitPerSecond = 1D;
+
+    @ConfField("集群api限流次数")
+    private Double clusterLimitPerSecond = 1D;
 
     public Double getLimitPerSecond() {
         return limitPerSecond;
@@ -19,6 +22,14 @@ public class LimiterConf implements SmconfUpdateCallBack {
 
     public void setLimitPerSecond(Double limitPerSecond) {
         this.limitPerSecond = limitPerSecond;
+    }
+
+    public Double getClusterLimitPerSecond() {
+        return clusterLimitPerSecond;
+    }
+
+    public void setClusterLimitPerSecond(Double clusterLimitPerSecond) {
+        this.clusterLimitPerSecond = clusterLimitPerSecond;
     }
 
     @Override
