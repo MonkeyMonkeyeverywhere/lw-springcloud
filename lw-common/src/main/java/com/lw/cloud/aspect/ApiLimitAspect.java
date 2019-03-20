@@ -25,7 +25,7 @@ public class ApiLimitAspect {
 
     @Around("execution(* com.lw.*.*.controller.*.*(..))")
     public Object aroud(ProceedingJoinPoint joinPoint){
-        Object result = null;
+        Object result;
         Semaphore semaphore;
         Class<?> clazz = joinPoint.getTarget().getClass();
         String key = getRateLimitKey(clazz, joinPoint.getSignature().getName());
@@ -37,7 +37,6 @@ public class ApiLimitAspect {
         try {
             semaphore.acquire();
             result = joinPoint.proceed();
-            logger.info("=======result:{}=======",result);
         } catch (Throwable e) {
             throw new RuntimeException(e);
         } finally {
