@@ -1,5 +1,6 @@
 package com.lw.springcloud.demo.controller;
 
+import com.lw.cloud.annotation.ApiRateLimit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ public class HouseController {
     @Value("${eureka.defaultZone}")
     private String defaultZone;
 
+    @ApiRateLimit(confKey = "open.api.houseHello")
     @RequestMapping("/hello")
     public String hello(){
         logger.info("request hello");
