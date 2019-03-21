@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -17,14 +18,16 @@ import java.util.concurrent.Semaphore;
 
 @Aspect
 @Order(value = Ordered.HIGHEST_PRECEDENCE)
+@Component
 public class ApiLimitAspect {
 
     private Logger logger = LoggerFactory.getLogger(ApiLimitAspect.class);
 
     public static Map<String,Semaphore> semaphoreMap = new ConcurrentHashMap<>();
 
-    @Around("execution(* com.lw.*.*.controller.*.*(..))")
+    @Around("@annotation(com.lw.cloud.annotation.ApiRateLimit)")
     public Object aroud(ProceedingJoinPoint joinPoint){
+        logger.info("===========接口限流中============" );
         Object result;
         Semaphore semaphore;
         Class<?> clazz = joinPoint.getTarget().getClass();
@@ -56,5 +59,4 @@ public class ApiLimitAspect {
         }
         return null;
     }
-
 }

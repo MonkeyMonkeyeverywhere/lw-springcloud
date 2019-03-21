@@ -1,5 +1,6 @@
 package com.lw.cloud.controller;
 
+import com.lw.cloud.annotation.ApiRateLimit;
 import com.lw.cloud.base.ResponseData;
 import com.lw.cloud.query.LoginQuery;
 import com.lw.cloud.service.EnterpriseUserService;
@@ -25,6 +26,7 @@ public class EnterpriseUserController {
     @PostMapping("login")
     @ApiResponses({@ApiResponse(code = 403,message = "无权限访问")})
     @ResponseHeader(name = "myhead",description = "lw")
+    @ApiRateLimit(confKey = "open.api.defaultLimit")
     public ResponseData login(@Valid @RequestBody LoginQuery query){
         Assert.notNull(query,"参数不能为空" );
         return ResponseData.ok(enterpriseUserService.login(query.getEid(),query.getUid() ));
