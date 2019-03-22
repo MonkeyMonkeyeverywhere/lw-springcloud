@@ -51,7 +51,7 @@ public class LimiterFilter extends ZuulFilter {
         RequestContext ctx = RequestContext.getCurrentContext();
         // 保证服务器时间一直
         long currentSecond = System.currentTimeMillis() / 1000;
-        String key = "lw-api-rate-limit-" + currentSecond;
+        String key = "LimiterFilter:lw-api-rate-limit-" + currentSecond;
         try {
             if(!redisTemplate.hasKey(key)){
                 redisTemplate.opsForValue().set(key,0L );

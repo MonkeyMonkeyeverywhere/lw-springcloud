@@ -3,11 +3,13 @@ package com.lw.cloud;
 import com.lw.cloud.listener.InitApiLimitRateListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com.lw")
+@EnableCaching
 public class LwUserServiceApplication {
 
     public static ConfigurableApplicationContext context = null;
