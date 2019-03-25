@@ -1,12 +1,9 @@
 package com.lw.cloud.service.impl;
 
 import com.lw.cloud.annotation.LogInfo;
-import com.lw.cloud.config.RedisCacheConfig;
 import com.lw.cloud.service.EnterpriseUserService;
 import com.lw.cloud.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;

@@ -65,6 +65,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.4.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -84,6 +90,19 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <!--将其他目录的配置文件打包-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.json</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>
