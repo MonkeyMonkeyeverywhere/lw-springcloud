@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConf {
 
-    @Bean
-    public HttpBasicAuthFilter httpBasicAuthFilter(){
-        return new HttpBasicAuthFilter();
-    }
+//    @Bean
+//    public HttpBasicAuthFilter httpBasicAuthFilter(){
+//        return new HttpBasicAuthFilter();
+//    }
 }

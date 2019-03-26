@@ -40,6 +40,11 @@
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+
 		<!-- Smconf -->
 		<dependency>
 			<groupId>com.cxytiandi</groupId>
@@ -63,6 +68,12 @@
 		<dependency>
 			<groupId>com.lw.cloud</groupId>
 			<artifactId>lw-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lw.cloud</groupId>
+			<artifactId>transaction-mq-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
