@@ -15,12 +15,12 @@ public enum TransactionMessageStatusEnum {
     /**
      * 已完成
      */
-    over(1),
+    OVER(1),
 
     /**
      * 死亡
      */
-    die(2)
+    DIE(2)
     ;
 
     private int status;

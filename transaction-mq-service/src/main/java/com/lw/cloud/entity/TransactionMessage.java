@@ -19,7 +19,7 @@ public class TransactionMessage {
     @Column(name = "send_system")
     private String sendSystem ; //发送的系统
     @Column(name = "send_count")
-    private String sendCount ; //重复发送的消息次数
+    private Integer sendCount = 0 ; //重复发送的消息次数
     @Column(name = "c_date")
     private Date createDate ; //创建时间
     @Column(name = "send_date")
