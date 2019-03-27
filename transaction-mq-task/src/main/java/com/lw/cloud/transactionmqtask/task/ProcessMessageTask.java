@@ -71,7 +71,7 @@ public class ProcessMessageTask {
         if(messages.size() > DEFAULT_MESSAGE_SIZE){
             sleepTime = 0;
         }
-        messages.parallelStream().forEach(message -> doProcess(message));
+        messages.stream().forEach(message -> doProcess(message));
         return sleepTime;
     }
 
