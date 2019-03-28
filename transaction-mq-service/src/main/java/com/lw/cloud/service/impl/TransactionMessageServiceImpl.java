@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class TransactionMessageServiceImpl implements TransactionMessageService {
@@ -81,7 +82,7 @@ public class TransactionMessageServiceImpl implements TransactionMessageService 
             return false;
         }
         message.setSendDate(sendDate);
-        message.setSendCount(message.getSendCount()+1);
+        message.setSendCount(Optional.ofNullable(message.getSendCount()).orElse(0) +1);
         transactionMessageRepository.save(message);
         return true;
     }

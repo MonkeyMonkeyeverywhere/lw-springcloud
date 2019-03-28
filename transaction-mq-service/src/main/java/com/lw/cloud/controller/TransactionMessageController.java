@@ -1,5 +1,6 @@
 package com.lw.cloud.controller;
 
+import cn.hutool.core.date.DateUtil;
 import com.lw.cloud.entity.TransactionMessage;
 import com.lw.cloud.service.TransactionMessageService;
 import org.apache.commons.lang.StringUtils;
@@ -8,6 +9,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -85,15 +87,10 @@ public class TransactionMessageController {
      */
     @PostMapping("/incrSendCount")
     public boolean incrSendCount(@RequestParam("messageId")Long messageId, @RequestParam("sendDate")String sendDate) {
-        try {
-            if (StringUtils.isBlank(sendDate)) {
-                return transactionMessageService.incrSendCount(messageId, new Date());
-            } else {
-                return transactionMessageService.incrSendCount(messageId, DateUtils.parseDate(sendDate, new String[]{"yyyy-MM=dd hh:mm:ss"}));
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return false;
+        if (StringUtils.isBlank(sendDate)) {
+            return transactionMessageService.incrSendCount(messageId, new Date());
+        } else {
+            return transactionMessageService.incrSendCount(messageId, DateUtil.parse(sendDate,"yyyy-MM-dd hh:mm:ss"));
         }
     }
 

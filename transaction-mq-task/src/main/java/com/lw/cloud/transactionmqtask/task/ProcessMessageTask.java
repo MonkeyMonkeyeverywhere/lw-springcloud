@@ -48,6 +48,7 @@ public class ProcessMessageTask {
      */
     public void start(){
         new Thread(() -> {
+            log.info("ProcessMessageTask开始发送消息=======>");
             while (true) {
                 final RLock lock = redissonClient.getLock("REDISSON:LOCK:TRANSACTION-MQ-TASK");
                 try {
@@ -76,6 +77,7 @@ public class ProcessMessageTask {
     }
 
     private void doProcess(TransactionMessage message) {
+        log.info("doProcess消息：{}",message.getId() );
         //校验消息是否死亡
         if(Optional.ofNullable(message.getSendCount()).orElse(0) > message.getDieCount()){
             transactionMessageClient.confirmDieMessage(message.getId());
@@ -84,8 +86,9 @@ public class ProcessMessageTask {
         long currentTime = System.currentTimeMillis();
         long sendTime = Objects.isNull(message.getSendDate())? 0 : message.getSendDate().getTime();
         if((currentTime - sendTime) > DEFAULT_MESSAGE_RETRY_INTERVAL){
+            log.info("发送消息队列============>");
             rabbitMqClient.send(message.getQueue(), JsonUtils.toJson(message));
-            // 更新发送次数和发送时间
+            log.info("更新发送次数和发送时间============>");
             transactionMessageClient.incrSendCount(message.getId(),DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         }
     }
