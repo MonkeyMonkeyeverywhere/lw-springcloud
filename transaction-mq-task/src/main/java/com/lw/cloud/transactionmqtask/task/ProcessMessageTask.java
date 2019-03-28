@@ -2,6 +2,7 @@ package com.lw.cloud.transactionmqtask.task;
 
 import com.lw.cloud.dto.TransactionMessage;
 import com.lw.cloud.feignclient.TransactionMessageClient;
+import com.lw.cloud.transactionmqtask.dto.MessageDto;
 import com.lw.cloud.transactionmqtask.rabbitmqclient.RabbitMqClient;
 import com.lw.cloud.util.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -87,7 +88,11 @@ public class ProcessMessageTask {
         long sendTime = Objects.isNull(message.getSendDate())? 0 : message.getSendDate().getTime();
         if((currentTime - sendTime) > DEFAULT_MESSAGE_RETRY_INTERVAL){
             log.info("发送消息队列============>");
-            rabbitMqClient.send(message.getQueue(), JsonUtils.toJson(message));
+            //向MQ发送消息
+            MessageDto messageDto = new MessageDto();
+            messageDto.setMessageId(message.getId());
+            messageDto.setMessage(message.getMessage());
+            rabbitMqClient.send(message.getQueue(), JsonUtils.toJson(messageDto));
             log.info("更新发送次数和发送时间============>");
             transactionMessageClient.incrSendCount(message.getId(),DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         }
